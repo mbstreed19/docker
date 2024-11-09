@@ -8,9 +8,18 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     volumes:
-      - ./gluetun:/gluetun
+      - ~/containers/gluetun:/gluetun
     environment:
       - VPN_SERVICE_PROVIDER=private internet access
-      - OPENVPN_USER=${USER}
-      - OPENVPN_PASSWORD=${PASSWD}
+      - OPENVPN_USER=$USER
+      - OPENVPN_PASSWORD=$PASSWD
       - SERVER_REGIONS=US West
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
+  
+  
+
